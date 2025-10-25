@@ -1,0 +1,6 @@
+int main() {
+    bool flag = true;
+    switch (flag) { // Ошибка: flag не int
+        case 1: break;
+    }
+}
