@@ -1,20 +1,17 @@
 ﻿#include <Windows.h>
-#include "TScaner.h"
+#include "Parser.h"
 
 int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    std::string input;
-    const char* filename = "input.txt";
-    TScaner scaner(filename);
-    TypeLex l;
-    int type;
-
-    do {
-        type = scaner.Scaner(l);
-        std::cout << TokenName(type) << " ---> " << l << std::endl;
-    } while (type != T_END);
-
+    const char* filename = "input.txt"; // фиксированный файл
+    try {
+        Parser parser(filename);
+        parser.parseAll();
+    }
+    catch (std::exception& ex) {
+        std::cerr << "Ошибка инициализации парсера: " << ex.what() << std::endl;
+    }
     return 0;
 }
